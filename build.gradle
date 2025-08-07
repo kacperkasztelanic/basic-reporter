@@ -1,0 +1,116 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+    id 'jacoco'
+    id 'com.adarshr.test-logger' version '4.0.0'
+    id 'io.freefair.lombok' version '8.14'
+}
+
+group = 'com.kkasztel'
+version = '1.2.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withSourcesJar()
+    withJavadocJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    vavrVersion = '0.10.7'
+    commonsIoVersion = '2.20.0'
+    poiOoxmlVersion = '5.4.1'
+    junitVersion = '5.13.4'
+    junitLauncherVersion = '1.13.4'
+}
+
+dependencies {
+    implementation "io.vavr:vavr:${vavrVersion}"
+    implementation "org.apache.poi:poi-ooxml:${poiOoxmlVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitVersion"
+    testImplementation "org.junit.platform:junit-platform-launcher:$junitLauncherVersion"
+    testImplementation "commons-io:commons-io:${commonsIoVersion}"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    reports {
+        html.required = true
+        junitXml.required = true
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
+    classDirectories.setFrom files(classDirectories.files.collect {
+        fileTree(dir: it, exclude: ['**/generated/**'])
+    })
+    executionData.setFrom fileTree(layout.buildDirectory).include("**/jacoco/test.exec")
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom {
+                name = 'basic-reporter'
+                description = 'basic-reporter library'
+                url = 'https://github.com/kacperkasztelanic/basic-reporter'
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'kacperkasztelanic'
+                        name = 'Kacper Kasztelanic'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/kacperkasztelanic/basic-reporter.git'
+                    developerConnection = 'scm:git:ssh://github.com/kacperkasztelanic/basic-reporter.git'
+                    url = 'https://github.com/kacperkasztelanic/basic-reporter'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'GitHubPackages'
+            url = uri('https://maven.pkg.github.com/kacperkasztelanic/basic-reporter')
+            credentials {
+                username = System.getenv('GITHUB_ACTOR') ?: ''
+                password = System.getenv('GITHUB_TOKEN') ?: ''
+            }
+        }
+    }
+}
+
+if (project.findProperty("signing") == "true") {
+    signing {
+        useGpgCmd()
+        sign publishing.publications.mavenJava
+    }
+}
