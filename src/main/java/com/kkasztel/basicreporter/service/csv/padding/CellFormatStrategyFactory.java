@@ -1,13 +1,13 @@
 package com.kkasztel.basicreporter.service.csv.padding;
 
 import com.kkasztel.basicreporter.model.ReportDefinition.Table;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import static io.vavr.API.$;
 import static io.vavr.API.Case;
 import static io.vavr.API.Match;
 import static io.vavr.Predicates.is;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 
 /**
  * Factory for creating {@link CellFormatStrategy} instances based on the field separator.

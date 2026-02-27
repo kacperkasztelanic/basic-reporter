@@ -2,7 +2,6 @@ package com.kkasztel.basicreporter.service.csv.padding;
 
 import com.kkasztel.basicreporter.model.ReportDefinition.Table;
 import com.kkasztel.basicreporter.service.common.ColumnLengthFinder;
-
 import io.vavr.Function1;
 import io.vavr.collection.Iterator;
 

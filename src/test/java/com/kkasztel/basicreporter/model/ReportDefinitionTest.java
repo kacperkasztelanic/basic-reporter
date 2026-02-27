@@ -1,14 +1,13 @@
 package com.kkasztel.basicreporter.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import org.junit.jupiter.api.Test;
-
 import com.kkasztel.basicreporter.model.ReportDefinition.Sheet;
 import com.kkasztel.basicreporter.model.ReportDefinition.Table;
+import io.vavr.collection.IndexedSeq;
+import org.junit.jupiter.api.Test;
 
 import static io.vavr.API.Vector;
-import io.vavr.collection.IndexedSeq;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ReportDefinitionTest {
 

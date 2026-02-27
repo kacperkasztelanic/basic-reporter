@@ -16,7 +16,7 @@ public class ReportingException extends RuntimeException {
      * message and cause.
      *
      * @param message the detail message
-     * @param cause the underlying cause of the reporting failure
+     * @param cause   the underlying cause of the reporting failure
      */
     public ReportingException(String message, Throwable cause) {
         super(message, cause);

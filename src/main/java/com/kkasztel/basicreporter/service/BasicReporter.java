@@ -1,12 +1,11 @@
 package com.kkasztel.basicreporter.service;
 
-import static java.util.function.Function.identity;
-
 import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
 import com.kkasztel.basicreporter.model.ReportingException;
-
 import io.vavr.control.Either;
+
+import static java.util.function.Function.identity;
 
 /**
  * Core interface for generating reports from a {@link ReportDefinition}.
@@ -29,7 +28,7 @@ public interface BasicReporter {
      *
      * @param definition the report definition describing the content and structure
      * @return an {@link Either} containing either a {@link ReportingException} (left) on failure,
-     *         or the generated {@link Report} (right) on success
+     * or the generated {@link Report} (right) on success
      */
     Either<ReportingException, Report> tryGenerate(ReportDefinition definition);
 

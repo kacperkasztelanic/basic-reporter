@@ -1,9 +1,15 @@
 package com.kkasztel.basicreporter.service.excel;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.function.IntUnaryOperator;
-
+import com.kkasztel.basicreporter.model.Report;
+import com.kkasztel.basicreporter.model.ReportDefinition;
+import com.kkasztel.basicreporter.model.ReportDefinition.Table;
+import com.kkasztel.basicreporter.model.ReportingException;
+import com.kkasztel.basicreporter.service.BasicReporter;
+import com.kkasztel.basicreporter.service.common.ColumnLengthFinder;
+import io.vavr.Function1;
+import io.vavr.collection.Iterator;
+import io.vavr.control.Either;
+import io.vavr.control.Try;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -13,17 +19,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.kkasztel.basicreporter.model.Report;
-import com.kkasztel.basicreporter.model.ReportDefinition;
-import com.kkasztel.basicreporter.model.ReportDefinition.Table;
-import com.kkasztel.basicreporter.model.ReportingException;
-import com.kkasztel.basicreporter.service.BasicReporter;
-import com.kkasztel.basicreporter.service.common.ColumnLengthFinder;
-
-import io.vavr.Function1;
-import io.vavr.collection.Iterator;
-import io.vavr.control.Either;
-import io.vavr.control.Try;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.function.IntUnaryOperator;
 
 abstract class AbstractExcelBasicReporter implements BasicReporter {
 

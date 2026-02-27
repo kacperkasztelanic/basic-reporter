@@ -1,22 +1,20 @@
 package com.kkasztel.basicreporter.service.csv;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
-import org.apache.commons.io.IOUtils;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.Test;
-
 import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
-import static com.kkasztel.basicreporter.model.ReportType.CSV;
 import com.kkasztel.basicreporter.model.ReportingException;
 import com.kkasztel.basicreporter.service.BasicReporter;
 import com.kkasztel.basicreporter.service.TestDataProvider;
-
 import io.vavr.control.Either;
 import io.vavr.control.Try;
+import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.Test;
+
+import static com.kkasztel.basicreporter.model.ReportType.CSV;
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class CsvBasicReporterTest {
 

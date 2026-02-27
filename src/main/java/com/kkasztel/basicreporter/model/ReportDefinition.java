@@ -88,11 +88,11 @@ public class ReportDefinition {
          * Creates a new table with the specified title row and data rows.
          *
          * @param titleRow the column headers
-         * @param data the data rows; each row must have the same number of
-         * columns as {@code titleRow}
+         * @param data     the data rows; each row must have the same number of
+         *                 columns as {@code titleRow}
          * @return a new table instance
          * @throws IllegalArgumentException if any data row has a different
-         * column count than the title row
+         *                                  column count than the title row
          */
         public static Table of(IndexedSeq<String> titleRow, IndexedSeq<IndexedSeq<String>> data) {
             return new Table(titleRow, data);
@@ -143,7 +143,7 @@ public class ReportDefinition {
         /**
          * Returns the cell value at the specified row and column.
          *
-         * @param row the zero-based row index
+         * @param row    the zero-based row index
          * @param column the zero-based column index
          * @return the cell value
          * @throws IllegalArgumentException if either index is out of range

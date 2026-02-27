@@ -1,18 +1,18 @@
 package com.kkasztel.basicreporter.service.csv;
 
-import java.nio.charset.Charset;
-
 import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
 import com.kkasztel.basicreporter.model.ReportDefinition.Table;
-import static com.kkasztel.basicreporter.model.ReportType.CSV;
 import com.kkasztel.basicreporter.model.ReportingException;
 import com.kkasztel.basicreporter.service.BasicReporter;
 import com.kkasztel.basicreporter.service.csv.padding.CellFormatStrategy;
 import com.kkasztel.basicreporter.service.csv.padding.CellFormatStrategyFactory;
-
-import static io.vavr.API.Try;
 import io.vavr.control.Either;
+
+import java.nio.charset.Charset;
+
+import static com.kkasztel.basicreporter.model.ReportType.CSV;
+import static io.vavr.API.Try;
 
 /**
  * Generates reports in CSV (or tab-separated) text format.

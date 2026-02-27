@@ -1,7 +1,6 @@
 package com.kkasztel.basicreporter.service.common;
 
 import com.kkasztel.basicreporter.model.ReportDefinition.Table;
-
 import io.vavr.Function2;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

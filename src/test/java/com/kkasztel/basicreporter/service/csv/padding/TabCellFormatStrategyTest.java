@@ -2,12 +2,10 @@ package com.kkasztel.basicreporter.service.csv.padding;
 
 import com.kkasztel.basicreporter.model.ReportDefinition;
 import com.kkasztel.basicreporter.service.TestDataProvider;
-
+import io.vavr.collection.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import io.vavr.collection.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

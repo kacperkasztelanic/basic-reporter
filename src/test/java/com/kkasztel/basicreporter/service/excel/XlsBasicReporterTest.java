@@ -1,17 +1,16 @@
 package com.kkasztel.basicreporter.service.excel;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-
 import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
-import static com.kkasztel.basicreporter.model.ReportType.XLS;
 import com.kkasztel.basicreporter.model.ReportingException;
 import com.kkasztel.basicreporter.service.BasicReporter;
 import com.kkasztel.basicreporter.service.TestDataProvider;
-
 import io.vavr.control.Either;
+import org.junit.jupiter.api.Test;
+
+import static com.kkasztel.basicreporter.model.ReportType.XLS;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class XlsBasicReporterTest {
 

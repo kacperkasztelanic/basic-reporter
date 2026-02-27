@@ -3,7 +3,6 @@ package com.kkasztel.basicreporter.service;
 import com.kkasztel.basicreporter.model.ReportDefinition;
 import com.kkasztel.basicreporter.model.ReportDefinition.Sheet;
 import com.kkasztel.basicreporter.model.ReportDefinition.Table;
-
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

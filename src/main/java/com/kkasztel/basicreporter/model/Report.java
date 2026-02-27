@@ -1,8 +1,8 @@
 package com.kkasztel.basicreporter.model;
 
-import java.nio.charset.Charset;
-
 import lombok.Value;
+
+import java.nio.charset.Charset;
 
 /**
  * Represents a generated report containing the report content as a byte array,
