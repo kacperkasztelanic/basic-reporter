@@ -1,26 +1,48 @@
 package com.kkasztel.basicreporter.service.csv;
 
-import com.kkasztel.basicreporter.model.ReportDefinition.Table;
-import com.kkasztel.basicreporter.model.ReportingException;
+import java.nio.charset.Charset;
+
 import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
+import com.kkasztel.basicreporter.model.ReportDefinition.Table;
+import static com.kkasztel.basicreporter.model.ReportType.CSV;
+import com.kkasztel.basicreporter.model.ReportingException;
 import com.kkasztel.basicreporter.service.BasicReporter;
 import com.kkasztel.basicreporter.service.csv.padding.CellFormatStrategy;
 import com.kkasztel.basicreporter.service.csv.padding.CellFormatStrategyFactory;
 
-import java.nio.charset.Charset;
-
+import static io.vavr.API.Try;
 import io.vavr.control.Either;
 
-import static com.kkasztel.basicreporter.model.ReportType.CSV;
-import static io.vavr.API.Try;
-
+/**
+ * Generates reports in CSV (or tab-separated) text format.
+ * <p>
+ * This reporter supports configurable field separators, line separators, and character encodings.
+ * When using a tab ({@code \t}) as the separator, column values are automatically padded with
+ * spaces for visual alignment.
+ * <p>
+ * Only single-sheet report definitions are supported. Attempting to generate a report from a
+ * multi-sheet definition will result in a {@link ReportingException}.
+ *
+ * <h3>Example usage:</h3>
+ * <pre>{@code
+ * BasicReporter reporter = new CsvBasicReporter(",", System.lineSeparator(), StandardCharsets.UTF_8);
+ * Report report = reporter.generate(definition);
+ * }</pre>
+ */
 public class CsvBasicReporter implements BasicReporter {
 
     private final String separator;
     private final String lineSeparator;
     private final Charset charset;
 
+    /**
+     * Creates a new CSV reporter with the specified configuration.
+     *
+     * @param separator     the field separator (e.g., {@code ","} for CSV or {@code "\t"} for TSV)
+     * @param lineSeparator the line separator (e.g., {@link System#lineSeparator()})
+     * @param charset       the character encoding for the output
+     */
     public CsvBasicReporter(String separator, String lineSeparator, Charset charset) {
         this.separator = separator;
         this.lineSeparator = lineSeparator;
@@ -29,13 +51,12 @@ public class CsvBasicReporter implements BasicReporter {
 
     @Override
     public Either<ReportingException, Report> tryGenerate(ReportDefinition definition) {
-        return Try(() -> generate(definition))
+        return Try(() -> doGenerate(definition))
                 .toEither()
                 .mapLeft(t -> new ReportingException(t.getMessage(), t));
     }
 
-    @Override
-    public Report generate(ReportDefinition definition) {
+    private Report doGenerate(ReportDefinition definition) {
         if (definition.getSheets().size() > 1) {
             throw new IllegalArgumentException("Creation of csv file with multiple sheets is not possible");
         }

@@ -1,11 +1,8 @@
 package com.kkasztel.basicreporter.service.excel;
 
-import com.kkasztel.basicreporter.model.ReportDefinition.Table;
-import com.kkasztel.basicreporter.model.ReportingException;
-import com.kkasztel.basicreporter.model.Report;
-import com.kkasztel.basicreporter.model.ReportDefinition;
-import com.kkasztel.basicreporter.service.BasicReporter;
-import com.kkasztel.basicreporter.service.common.ColumnLengthFinder;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.function.IntUnaryOperator;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.BorderStyle;
@@ -16,9 +13,12 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.function.IntUnaryOperator;
+import com.kkasztel.basicreporter.model.Report;
+import com.kkasztel.basicreporter.model.ReportDefinition;
+import com.kkasztel.basicreporter.model.ReportDefinition.Table;
+import com.kkasztel.basicreporter.model.ReportingException;
+import com.kkasztel.basicreporter.service.BasicReporter;
+import com.kkasztel.basicreporter.service.common.ColumnLengthFinder;
 
 import io.vavr.Function1;
 import io.vavr.collection.Iterator;
@@ -99,8 +99,7 @@ abstract class AbstractExcelBasicReporter implements BasicReporter {
     private void resize(Sheet sheet, Function1<Integer, Integer> columnLengthFunction, int columnIndex) {
         if (useAutosize) {
             sheet.autoSizeColumn(columnIndex);
-        }
-        else {
+        } else {
             sheet.setColumnWidth(columnIndex, DEFAULT_WIDTH.applyAsInt(columnLengthFunction.apply(columnIndex)));
         }
     }
