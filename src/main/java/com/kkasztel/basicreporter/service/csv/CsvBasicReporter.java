@@ -24,7 +24,7 @@ import static io.vavr.API.Try;
  * Only single-sheet report definitions are supported. Attempting to generate a report from a
  * multi-sheet definition will result in a {@link ReportingException}.
  *
- * <h3>Example usage:</h3>
+ * <h2>Example usage:</h2>
  * <pre>{@code
  * BasicReporter reporter = new CsvBasicReporter(",", System.lineSeparator(), StandardCharsets.UTF_8);
  * Report report = reporter.generate(definition);

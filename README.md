@@ -36,7 +36,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.kacperkasztelanic:basic-reporter:1.2.0-SNAPSHOT'
+    implementation 'com.github.kacperkasztelanic:basic-reporter:1.2.0'
 }
 ```
 
@@ -53,7 +53,7 @@ dependencies {
 <dependency>
     <groupId>com.github.kacperkasztelanic</groupId>
     <artifactId>basic-reporter</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 

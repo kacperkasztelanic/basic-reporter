@@ -13,7 +13,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  * <p>
  * Supports multiple sheets, optional column auto-sizing, and optional cell borders.
  *
- * <h3>Example usage:</h3>
+ * <h2>Example usage:</h2>
  * <pre>{@code
  * BasicReporter reporter = new XlsxBasicReporter(true, true);
  * Report report = reporter.generate(definition);
