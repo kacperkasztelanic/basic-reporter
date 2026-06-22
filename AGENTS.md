@@ -26,8 +26,32 @@ JaCoCo are wired in via Gradle plugins (no manual annotation processing setup ne
 
 - **Commit subject**: imperative mood (e.g. "Add", "Fix", "Migrate" — not "Added"/"Fixes").
 - **Commit body**: leave empty. The subject line is the entire message.
-- **Merging**: integrate `dev` into `master` with fast-forward merges only (no merge commits).
-- **Pushing**: the user pushes manually. Agents must not push to any remote.
+- **Branches**: work happens on `dev`; `master` only ever holds released commits. `dev` is normally
+  one or more commits ahead of `master`.
+- **Merging**: integrate `dev` into `master` with fast-forward merges only (`git merge --ff-only`,
+  no merge commits).
+- **Pushing**: the user pushes manually — agents must not push unless explicitly asked. When asked,
+  push to **all remotes** (`origin`, `gitlab`, `myszu`).
+- **Versioning**: `MAJOR.MINOR.PATCH`. `dev` always carries a `-SNAPSHOT` suffix; `build.gradle`
+  `version` and the two version references in `README.md` must stay in sync.
+
+### Releasing a version
+
+1. On `dev`, drop the `-SNAPSHOT` suffix in `build.gradle` and `README.md` (e.g. `1.2.0-SNAPSHOT`
+   → `1.2.0`); commit `Bump version to <X.Y.Z>` (folded into the release-prep commit is fine).
+2. Fast-forward merge `dev` into `master`.
+3. When asked, push `master` and `dev` to all remotes.
+4. Create a **lightweight** tag named `<X.Y.Z>` (no `v` prefix — match existing tags like `1.1.7`)
+   on the release commit and push it to all remotes.
+5. The user creates a GitHub Release on that tag; the `release` event triggers
+   `.github/workflows/gradle-publish.yml`, which runs `./gradlew publish` to GitHub Packages.
+
+### Preparing the next development cycle
+
+1. On `dev`, after a release, bump to the **next minor** `-SNAPSHOT` (historical pattern:
+   `1.1.7` → `1.2.0-SNAPSHOT`, `1.2.0` → `1.3.0-SNAPSHOT`) in `build.gradle` and `README.md`.
+2. Commit `Prepare for <X.Y.Z>-SNAPSHOT development` (this commit lives on `dev` only).
+3. When asked, push `dev` to all remotes.
 
 ## Architecture
 
