@@ -4,7 +4,7 @@ plugins {
     id 'signing'
     id 'jacoco'
     id 'com.adarshr.test-logger' version '4.0.0'
-    id 'io.freefair.lombok' version '8.14'
+    id 'io.freefair.lombok' version '9.5.0'
 }
 
 group = 'com.kkasztel'
@@ -23,10 +23,10 @@ repositories {
 
 ext {
     vavrVersion = '0.10.7'
-    commonsIoVersion = '2.20.0'
-    poiOoxmlVersion = '5.4.1'
-    junitVersion = '5.13.4'
-    junitLauncherVersion = '1.13.4'
+    commonsIoVersion = '2.22.0'
+    poiOoxmlVersion = '5.5.1'
+    junitVersion = '5.14.4'
+    junitLauncherVersion = '1.14.4'
 }
 
 dependencies {
