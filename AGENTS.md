@@ -22,6 +22,13 @@ simple tabular reports as CSV, TSV, XLS, and XLSX. It is published to GitHub Pac
 Note: source/target is **Java 8** — do not use APIs or syntax newer than Java 8. Lombok and
 JaCoCo are wired in via Gradle plugins (no manual annotation processing setup needed).
 
+## Git & Release Workflow
+
+- **Commit subject**: imperative mood (e.g. "Add", "Fix", "Migrate" — not "Added"/"Fixes").
+- **Commit body**: leave empty. The subject line is the entire message.
+- **Merging**: integrate `dev` into `master` with fast-forward merges only (no merge commits).
+- **Pushing**: the user pushes manually. Agents must not push to any remote.
+
 ## Architecture
 
 **Data flow:** caller builds a `ReportDefinition` (a name + one or more `Sheet`s, each holding a
